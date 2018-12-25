@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.roilka</groupId>
+	<artifactId>roilka-user-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<roilka-user.version>0.0.1-SNAPSHOT</roilka-user.version>
+	</properties>
+	
+	<parent>
+
+		<groupId>org.springframework.boot</groupId>
+
+		<artifactId>spring-boot-starter-parent</artifactId>
+
+		<version>2.1.0.RELEASE</version>
+
+		<relativePath />
+
+		<!-- lookup parent from repository -->
+
+
+	</parent>
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- 项目版本 -->
+			<dependency>
+				<groupId>com.roilka</groupId>
+				<artifactId>roilka-user-common</artifactId>
+				<version>${roilka-user.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.roilka</groupId>
+				<artifactId>roilka-user-facade</artifactId>
+				<version>${roilka-user.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.roilka</groupId>
+				<artifactId>roilka-user-integration-dal</artifactId>
+				<version>${roilka-user.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.roilka</groupId>
+				<artifactId>roilka-user-domain</artifactId>
+				<version>${roilka-user.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.roilka</groupId>
+				<artifactId>roilka-user-api</artifactId>
+				<version>${roilka-user.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.roilka</groupId>
+				<artifactId>roilka-user-test</artifactId>
+				<version>${roilka-user.version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<profiles>
+		<profile>
+			<!-- 生产环境 -->
+			<id>prd</id>
+			<properties>
+				<profiles.active>prd</profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<!-- 本地开发环境 -->
+			<id>local</id>
+			<properties>
+				<profiles.active>local</profiles.active>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<!-- 测试环境 -->
+			<id>test</id>
+			<properties>
+				<profiles.active>test</profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<!-- UT环境 -->
+			<id>ut</id>
+			<properties>
+				<profiles.active>ut</profiles.active>
+			</properties>
+		</profile>
+	</profiles>
+
+	<modules>
+		<module>roilka-user-common</module>
+		<module>roilka-user-api</module>
+		<module>roilka-user-domain</module>
+		<module>roilka-user-facade</module>
+		<module>roilka-user-integration-dal</module>
+		<module>roilka-user-datasource</module>
+		<module>roilka-user-test</module>
+	</modules>
+</project>
